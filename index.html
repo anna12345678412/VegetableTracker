@@ -4,34 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vegetable Consumption Tracker</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-
-        header { text-align: center; margin-bottom: 30px; }
-        .week-selector { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px; }
-        .week-selector button { background: #4a90d9; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
-
-        .category { background: white; padding: 15px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .category h2 { font-size: 1rem; margin-bottom: 10px; color: #2d7dd2; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; }
-
-        .veg-label { display: block; padding: 8px 12px; margin: 4px 0; background: #f9f9f9; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
-        .veg-label:hover { background: #eef4ff; }
-        .veg-checkbox { margin-right: 10px; transform: scale(1.2); }
-
-        .controls { text-align: center; margin-top: 30px; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; }
-        .btn-primary, .btn-secondary { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
-        .btn-primary { background: #4a90d9; color: white; }
-        .btn-secondary { background: #ccc; color: #333; }
-        .status-success { color: #2e7d32; }
-        .status-info { color: #1976d2; }
-
-        @media (max-width: 480px) {
-            .controls { flex-direction: column; }
-            .btn-primary, .btn-secondary { width: 100%; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -44,7 +17,9 @@
             </div>
         </header>
 
-        <main id="vegetableContainer"></main>
+        <main id="vegetableContainer">
+            <!-- Vegetables will be loaded here -->
+        </main>
 
         <footer class="controls">
             <button id="saveBtn" class="btn-primary">Save Progress</button>
@@ -53,98 +28,7 @@
         </footer>
     </div>
 
-    <script>
-        // Data
-        const vegetableData = [
-            { category: "Leafy Greens", vegetables: ["Spinach", "Kale", "Lettuce", "Collard Greens", "Arugula", "Swiss Chard", "Bok Choy"] },
-            { category: "Root Vegetables", vegetables: ["Carrots", "Beets", "Radishes", "Turnips", "Potatoes", "Sweet Potatoes"] },
-            { category: "Bulb & Stem Vegetables", vegetables: ["Onions", "Garlic", "Leeks", "Celery", "Fennel", "Asparagus"] },
-            { category: "Flower Vegetables", vegetables: ["Broccoli", "Cauliflower", "Artichoke"] },
-            { category: "Fruit Vegetables", vegetables: ["Tomatoes", "Bell Peppers", "Eggplants", "Cucumbers", "Zucchini"] },
-            { category: "Pod & Legume Vegetables", vegetables: ["Green Beans", "Peas", "Chickpeas", "Lentils"] },
-            { category: "Starchy Vegetables", vegetables: ["Corn", "Winter Squash"] },
-            { category: "Other Cruciferous", vegetables: ["Brussels Sprouts", "Kohlrabi"] }
-        ];
-
-        const totalWeeks = 52;
-        let currentWeek = 1;
-
-        // Load/Save Logic
-        function loadSavedData() {
-            try {
-                return JSON.parse(localStorage.getItem('veggieTracker')) || {};
-            } catch (e) {
-                console.error("Error loading data:", e);
-                return {};
-            }
-        }
-
-        function saveData() {
-            const data = loadSavedData();
-            const selected = document.querySelectorAll('.veg-checkbox:checked');
-            data[`week_${currentWeek}`] = Array.from(selected).map(cb => cb.dataset.veg);
-            localStorage.setItem('veggieTracker', JSON.stringify(data));
-            showStatus('Progress saved!', 'success');
-        }
-
-        function renderVegetables() {
-            const container = document.getElementById('vegetableContainer');
-            const savedData = loadSavedData();
-            const weekKey = `week_${currentWeek}`;
-            const selectedVeggies = savedData[weekKey] || [];
-
-            let html = '';
-            vegetableData.forEach(cat => {
-                html += `<section class="category"><h2>${cat.category}</h2>`;
-                cat.vegetables.forEach(veg => {
-                    const checked = selectedVeggies.includes(veg) ? 'checked' : '';
-                    html += `<label class="veg-label">`;
-                    html += `<input type="checkbox" class="veg-checkbox" data-veg="${veg}" ${checked}>`;
-                    html += `${veg}`;
-                    html += `</label>`;
-                });
-                html += `</section>`;
-            });
-            container.innerHTML = html;
-            document.getElementById('currentWeekDisplay').textContent = `Week ${currentWeek}`;
-        }
-
-        // Event Listeners
-        document.getElementById('prevWeek').addEventListener('click', () => {
-            if (currentWeek > 1) { currentWeek--; renderVegetables(); }
-        });
-
-        document.getElementById('nextWeek').addEventListener('click', () => {
-            if (currentWeek < totalWeeks) { currentWeek++; renderVegetables(); }
-        });
-
-        document.getElementById('saveBtn').addEventListener('click', saveData);
-
-        document.getElementById('resetWeekBtn').addEventListener('click', () => {
-            if (confirm(`Clear all selections for Week ${currentWeek}?`)) {
-                const saved = loadSavedData();
-                delete saved[`week_${currentWeek}`];
-                localStorage.setItem('veggieTracker', JSON.stringify(saved));
-                renderVegetables();
-                showStatus('Week reset.', 'info');
-            }
-        });
-
-        document.addEventListener('change', (e) => {
-            if (e.target.classList.contains('veg-checkbox')) {
-                saveData();
-            }
-        });
-
-        function showStatus(msg, type) {
-            const el = document.getElementById('statusMsg');
-            el.textContent = msg;
-            el.className = `status-${type}`;
-            setTimeout(() => el.textContent = '', 3000);
-        }
-
-        // Initialize
-        renderVegetables();
-    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
