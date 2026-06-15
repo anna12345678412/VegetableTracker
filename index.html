@@ -17,11 +17,59 @@
             </div>
         </header>
 
+        <!-- Main Tracking View -->
         <main id="vegetableContainer">
             <!-- Vegetables will be loaded here -->
         </main>
 
+        <!-- NEW: Dashboard Container (Hidden by default) -->
+        <section id="dashboard" class="dashboard hidden">
+            <h2>📊 Your Progress</h2>
+            
+            <!-- Overall Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalWeeksTracked">0</div>
+                    <div class="stat-label">Weeks Tracked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalVeggieCount">0</div>
+                    <div class="stat-label">Total Selections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="completionRate">0%</div>
+                    <div class="stat-label">Avg Completion</div>
+                </div>
+            </div>
+
+            <!-- Current Week Progress Bar -->
+            <div class="progress-section">
+                <h3>This Week's Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="weeklyProgressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="selectedCount">0</span> / <span id="totalCount">0</span> vegetables selected
+                </div>
+            </div>
+
+            <!-- Category Distribution Chart -->
+            <div class="chart-section">
+                <h3>Vegetable Categories</h3>
+                <div id="categoryBars"></div>
+            </div>
+
+            <!-- Top 5 Most Eaten -->
+            <div class="chart-section">
+                <h3>Top 5 Most Consumed</h3>
+                <div id="topVegetables"></div>
+            </div>
+        </section>
+
         <footer class="controls">
+            <!-- NEW: View Dashboard Button -->
+            <button id="viewDashboardBtn" class="btn-secondary">📊 View Dashboard</button>
+            
             <div class="btn-group">
                 <button id="saveBtn" class="btn-primary">Save Week</button>
                 <button id="resetWeekBtn" class="btn-secondary">Reset Week</button>
