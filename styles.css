@@ -1,38 +1,26 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2870
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red66\green147\blue62;\red42\green44\blue51;\red219\green63\blue57;
-\red167\green87\blue5;\red50\green94\blue238;}
-{\*\expandedcolortbl;;\cssrgb\c31373\c63137\c30980;\cssrgb\c21961\c22745\c25882;\cssrgb\c89412\c33725\c28627;
-\cssrgb\c71765\c41961\c392;\cssrgb\c25098\c47059\c94902;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; }
+.container { max-width: 600px; margin: 0 auto; padding: 20px; }
 
-\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 *\cf3 \strokec3  \{ \cf4 \strokec4 box-sizing\cf3 \strokec3 : border-box; \cf4 \strokec4 margin\cf3 \strokec3 : \cf5 \strokec5 0\cf3 \strokec3 ; \cf4 \strokec4 padding\cf3 \strokec3 : \cf5 \strokec5 0\cf3 \strokec3 ; \}\
-\cf2 \strokec2 body\cf3 \strokec3  \{ \cf4 \strokec4 font-family\cf3 \strokec3 : -apple-system, BlinkMacSystemFont, \cf2 \strokec2 'Segoe UI'\cf3 \strokec3 , sans-serif; \cf4 \strokec4 background\cf3 \strokec3 : #f5f5f5; \cf4 \strokec4 color\cf3 \strokec3 : #333; \}\
-\cf2 \strokec2 .container\cf3 \strokec3  \{ \cf4 \strokec4 max-width\cf3 \strokec3 : \cf5 \strokec5 600\cf3 \strokec3 px; \cf4 \strokec4 margin\cf3 \strokec3 : \cf5 \strokec5 0\cf3 \strokec3  auto; \cf4 \strokec4 padding\cf3 \strokec3 : \cf5 \strokec5 20\cf3 \strokec3 px; \}\
-\
-\cf2 \strokec2 header\cf3 \strokec3  \{ \cf4 \strokec4 text-align\cf3 \strokec3 : center; \cf4 \strokec4 margin-bottom\cf3 \strokec3 : \cf5 \strokec5 30\cf3 \strokec3 px; \}\
-\cf2 \strokec2 .week-selector\cf3 \strokec3  \{ \cf4 \strokec4 display\cf3 \strokec3 : flex; \cf4 \strokec4 align-items\cf3 \strokec3 : center; \cf4 \strokec4 justify-content\cf3 \strokec3 : center; \cf4 \strokec4 gap\cf3 \strokec3 : \cf5 \strokec5 15\cf3 \strokec3 px; \cf4 \strokec4 margin-top\cf3 \strokec3 : \cf5 \strokec5 10\cf3 \strokec3 px; \}\
-\cf2 \strokec2 .week-selector button\cf3 \strokec3  \{ \cf4 \strokec4 background\cf3 \strokec3 : #4a90d9; \cf4 \strokec4 color\cf3 \strokec3 : white; \cf4 \strokec4 border\cf3 \strokec3 : none; \cf4 \strokec4 padding\cf3 \strokec3 : \cf5 \strokec5 8\cf3 \strokec3 px \cf5 \strokec5 16\cf3 \strokec3 px; \cf4 \strokec4 border-radius\cf3 \strokec3 : \cf5 \strokec5 6\cf3 \strokec3 px; \cf4 \strokec4 cursor\cf3 \strokec3 : pointer; \}\
-\
-\cf2 \strokec2 .category\cf3 \strokec3  \{ \cf4 \strokec4 background\cf3 \strokec3 : white; \cf4 \strokec4 padding\cf3 \strokec3 : \cf5 \strokec5 15\cf3 \strokec3 px; \cf4 \strokec4 margin\cf3 \strokec3 : \cf5 \strokec5 15\cf3 \strokec3 px \cf5 \strokec5 0\cf3 \strokec3 ; \cf4 \strokec4 border-radius\cf3 \strokec3 : \cf5 \strokec5 8\cf3 \strokec3 px; \cf4 \strokec4 box-shadow\cf3 \strokec3 : \cf5 \strokec5 0\cf3 \strokec3  \cf5 \strokec5 2\cf3 \strokec3 px \cf5 \strokec5 4\cf3 \strokec3 px \cf6 \strokec6 rgba\cf3 \strokec3 (\cf5 \strokec5 0\cf3 \strokec3 ,\cf5 \strokec5 0\cf3 \strokec3 ,\cf5 \strokec5 0\cf3 \strokec3 ,\cf5 \strokec5 0.1\cf3 \strokec3 ); \}\
-\cf2 \strokec2 .category h2\cf3 \strokec3  \{ \cf4 \strokec4 font-size\cf3 \strokec3 : \cf5 \strokec5 1\cf3 \strokec3 rem; \cf4 \strokec4 margin-bottom\cf3 \strokec3 : \cf5 \strokec5 10\cf3 \strokec3 px; \cf4 \strokec4 color\cf3 \strokec3 : #2d7dd2; \cf4 \strokec4 border-bottom\cf3 \strokec3 : \cf5 \strokec5 2\cf3 \strokec3 px solid #e0e0e0; \cf4 \strokec4 padding-bottom\cf3 \strokec3 : \cf5 \strokec5 5\cf3 \strokec3 px; \}\
-\
-\cf2 \strokec2 .veg-label\cf3 \strokec3  \{ \cf4 \strokec4 display\cf3 \strokec3 : block; \cf4 \strokec4 padding\cf3 \strokec3 : \cf5 \strokec5 8\cf3 \strokec3 px \cf5 \strokec5 12\cf3 \strokec3 px; \cf4 \strokec4 margin\cf3 \strokec3 : \cf5 \strokec5 4\cf3 \strokec3 px \cf5 \strokec5 0\cf3 \strokec3 ; \cf4 \strokec4 background\cf3 \strokec3 : #f9f9f9; \cf4 \strokec4 border-radius\cf3 \strokec3 : \cf5 \strokec5 4\cf3 \strokec3 px; \cf4 \strokec4 cursor\cf3 \strokec3 : pointer; \cf4 \strokec4 transition\cf3 \strokec3 : background \cf5 \strokec5 0.2\cf3 \strokec3 s; \}\
-\cf2 \strokec2 .veg-label:hover\cf3 \strokec3  \{ \cf4 \strokec4 background\cf3 \strokec3 : #eef4ff; \}\
-\cf2 \strokec2 .veg-checkbox\cf3 \strokec3  \{ \cf4 \strokec4 margin-right\cf3 \strokec3 : \cf5 \strokec5 10\cf3 \strokec3 px; \cf4 \strokec4 transform\cf3 \strokec3 : \cf6 \strokec6 scale\cf3 \strokec3 (\cf5 \strokec5 1.2\cf3 \strokec3 ); \}\
-\
-\cf2 \strokec2 .controls\cf3 \strokec3  \{ \cf4 \strokec4 text-align\cf3 \strokec3 : center; \cf4 \strokec4 margin-top\cf3 \strokec3 : \cf5 \strokec5 30\cf3 \strokec3 px; \cf4 \strokec4 display\cf3 \strokec3 : flex; \cf4 \strokec4 gap\cf3 \strokec3 : \cf5 \strokec5 10\cf3 \strokec3 px; \cf4 \strokec4 justify-content\cf3 \strokec3 : center; \cf4 \strokec4 align-items\cf3 \strokec3 : center; \cf4 \strokec4 flex-wrap\cf3 \strokec3 : wrap; \}\
-\cf2 \strokec2 .btn-primary\cf3 \strokec3 ,\cf2 \strokec2  .btn-secondary\cf3 \strokec3  \{ \cf4 \strokec4 padding\cf3 \strokec3 : \cf5 \strokec5 10\cf3 \strokec3 px \cf5 \strokec5 20\cf3 \strokec3 px; \cf4 \strokec4 border\cf3 \strokec3 : none; \cf4 \strokec4 border-radius\cf3 \strokec3 : \cf5 \strokec5 6\cf3 \strokec3 px; \cf4 \strokec4 cursor\cf3 \strokec3 : pointer; \cf4 \strokec4 font-size\cf3 \strokec3 : \cf5 \strokec5 1\cf3 \strokec3 rem; \}\
-\cf2 \strokec2 .btn-primary\cf3 \strokec3  \{ \cf4 \strokec4 background\cf3 \strokec3 : #4a90d9; \cf4 \strokec4 color\cf3 \strokec3 : white; \}\
-\cf2 \strokec2 .btn-secondary\cf3 \strokec3  \{ \cf4 \strokec4 background\cf3 \strokec3 : #ccc; \cf4 \strokec4 color\cf3 \strokec3 : #333; \}\
-\cf2 \strokec2 .status-success\cf3 \strokec3  \{ \cf4 \strokec4 color\cf3 \strokec3 : #2e7d32; \}\
-\cf2 \strokec2 .status-info\cf3 \strokec3  \{ \cf4 \strokec4 color\cf3 \strokec3 : #1976d2; \}\
-\
-\pard\pardeftab720\partightenfactor0
-\cf5 \strokec5 @media \cf3 \strokec3 (\cf4 \strokec4 max-width\cf3 \strokec3 :\cf5 \strokec5  480px\cf3 \strokec3 ) \{\
-    \cf2 \strokec2 .controls\cf3 \strokec3  \{ \cf4 \strokec4 flex-direction\cf3 \strokec3 : column; \}\
-    \cf2 \strokec2 .btn-primary\cf3 \strokec3 ,\cf2 \strokec2  .btn-secondary\cf3 \strokec3  \{ \cf4 \strokec4 width\cf3 \strokec3 : \cf5 \strokec5 100\cf3 \strokec3 %; \}\
-\}}
+header { text-align: center; margin-bottom: 30px; }
+.week-selector { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px; }
+.week-selector button { background: #4a90d9; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+
+.category { background: white; padding: 15px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.category h2 { font-size: 1rem; margin-bottom: 10px; color: #2d7dd2; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; }
+
+.veg-label { display: block; padding: 8px 12px; margin: 4px 0; background: #f9f9f9; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+.veg-label:hover { background: #eef4ff; }
+.veg-checkbox { margin-right: 10px; transform: scale(1.2); }
+
+.controls { text-align: center; margin-top: 30px; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; }
+.btn-primary, .btn-secondary { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+.btn-primary { background: #4a90d9; color: white; }
+.btn-secondary { background: #ccc; color: #333; }
+.status-success { color: #2e7d32; }
+.status-info { color: #1976d2; }
+
+@media (max-width: 480px) {
+    .controls { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; }
+}
