@@ -1,47 +1,150 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2870
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Italic;}
-{\colortbl;\red255\green255\blue255;\red42\green44\blue51;\red219\green63\blue57;\red167\green87\blue5;
-\red66\green147\blue62;\red143\green144\blue150;}
-{\*\expandedcolortbl;;\cssrgb\c21961\c22745\c25882;\cssrgb\c89412\c33725\c28627;\cssrgb\c71765\c41961\c392;
-\cssrgb\c31373\c63137\c30980;\cssrgb\c62745\c63137\c65490;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetable Consumption Tracker</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
 
-\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 <!DOCTYPE html>\
-<\cf3 \strokec3 html \cf4 \strokec4 lang\cf2 \strokec2 ="\cf5 \strokec5 en\cf2 \strokec2 ">\
-<\cf3 \strokec3 head\cf2 \strokec2 >\
-    <\cf3 \strokec3 meta \cf4 \strokec4 charset\cf2 \strokec2 ="\cf5 \strokec5 UTF-8\cf2 \strokec2 ">\
-    <\cf3 \strokec3 meta \cf4 \strokec4 name\cf2 \strokec2 ="\cf5 \strokec5 viewport\cf2 \strokec2 "\cf3 \strokec3  \cf4 \strokec4 content\cf2 \strokec2 ="\cf5 \strokec5 width=device-width, initial-scale=1.0\cf2 \strokec2 ">\
-    <\cf3 \strokec3 title\cf2 \strokec2 >Vegetable Consumption Tracker</\cf3 \strokec3 title\cf2 \strokec2 >\
-    <\cf3 \strokec3 link \cf4 \strokec4 rel\cf2 \strokec2 ="\cf5 \strokec5 stylesheet\cf2 \strokec2 "\cf3 \strokec3  \cf4 \strokec4 href\cf2 \strokec2 ="\cf5 \strokec5 styles.css\cf2 \strokec2 ">\
-</\cf3 \strokec3 head\cf2 \strokec2 >\
-<\cf3 \strokec3 body\cf2 \strokec2 >\
-    <\cf3 \strokec3 div \cf4 \strokec4 class\cf2 \strokec2 ="\cf5 \strokec5 container\cf2 \strokec2 ">\
-        <\cf3 \strokec3 header\cf2 \strokec2 >\
-            <\cf3 \strokec3 h1\cf2 \strokec2 >\uc0\u55358 \u56684  Weekly Veggie Tracker</\cf3 \strokec3 h1\cf2 \strokec2 >\
-            <\cf3 \strokec3 div \cf4 \strokec4 class\cf2 \strokec2 ="\cf5 \strokec5 week-selector\cf2 \strokec2 ">\
-                <\cf3 \strokec3 button \cf4 \strokec4 id\cf2 \strokec2 ="\cf5 \strokec5 prevWeek\cf2 \strokec2 ">&lt;</\cf3 \strokec3 button\cf2 \strokec2 >\
-                <\cf3 \strokec3 span \cf4 \strokec4 id\cf2 \strokec2 ="\cf5 \strokec5 currentWeekDisplay\cf2 \strokec2 ">Week 1</\cf3 \strokec3 span\cf2 \strokec2 >\
-                <\cf3 \strokec3 button \cf4 \strokec4 id\cf2 \strokec2 ="\cf5 \strokec5 nextWeek\cf2 \strokec2 ">&gt;</\cf3 \strokec3 button\cf2 \strokec2 >\
-            </\cf3 \strokec3 div\cf2 \strokec2 >\
-        </\cf3 \strokec3 header\cf2 \strokec2 >\
-\
-        <\cf3 \strokec3 main \cf4 \strokec4 id\cf2 \strokec2 ="\cf5 \strokec5 vegetableContainer\cf2 \strokec2 ">\
-            
-\f1\i \cf6 \strokec6 <!-- Vegetables will be loaded here -->
-\f0\i0 \cf2 \strokec2 \
-        </\cf3 \strokec3 main\cf2 \strokec2 >\
-\
-        <\cf3 \strokec3 footer \cf4 \strokec4 class\cf2 \strokec2 ="\cf5 \strokec5 controls\cf2 \strokec2 ">\
-            <\cf3 \strokec3 button \cf4 \strokec4 id\cf2 \strokec2 ="\cf5 \strokec5 saveBtn\cf2 \strokec2 "\cf3 \strokec3  \cf4 \strokec4 class\cf2 \strokec2 ="\cf5 \strokec5 btn-primary\cf2 \strokec2 ">Save Progress</\cf3 \strokec3 button\cf2 \strokec2 >\
-            <\cf3 \strokec3 button \cf4 \strokec4 id\cf2 \strokec2 ="\cf5 \strokec5 resetWeekBtn\cf2 \strokec2 "\cf3 \strokec3  \cf4 \strokec4 class\cf2 \strokec2 ="\cf5 \strokec5 btn-secondary\cf2 \strokec2 ">Reset Week</\cf3 \strokec3 button\cf2 \strokec2 >\
-            <\cf3 \strokec3 span \cf4 \strokec4 id\cf2 \strokec2 ="\cf5 \strokec5 statusMsg\cf2 \strokec2 "></\cf3 \strokec3 span\cf2 \strokec2 >\
-        </\cf3 \strokec3 footer\cf2 \strokec2 >\
-    </\cf3 \strokec3 div\cf2 \strokec2 >\
-\
-    <\cf3 \strokec3 script \cf4 \strokec4 src\cf2 \strokec2 ="\cf5 \strokec5 data.js\cf2 \strokec2 "></\cf3 \strokec3 script\cf2 \strokec2 >\
-    <\cf3 \strokec3 script \cf4 \strokec4 src\cf2 \strokec2 ="\cf5 \strokec5 app.js\cf2 \strokec2 "></\cf3 \strokec3 script\cf2 \strokec2 >\
-</\cf3 \strokec3 body\cf2 \strokec2 >\
-</\cf3 \strokec3 html\cf2 \strokec2 >}
+        header { text-align: center; margin-bottom: 30px; }
+        .week-selector { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px; }
+        .week-selector button { background: #4a90d9; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+
+        .category { background: white; padding: 15px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .category h2 { font-size: 1rem; margin-bottom: 10px; color: #2d7dd2; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; }
+
+        .veg-label { display: block; padding: 8px 12px; margin: 4px 0; background: #f9f9f9; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+        .veg-label:hover { background: #eef4ff; }
+        .veg-checkbox { margin-right: 10px; transform: scale(1.2); }
+
+        .controls { text-align: center; margin-top: 30px; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        .btn-primary { background: #4a90d9; color: white; }
+        .btn-secondary { background: #ccc; color: #333; }
+        .status-success { color: #2e7d32; }
+        .status-info { color: #1976d2; }
+
+        @media (max-width: 480px) {
+            .controls { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🥬 Weekly Veggie Tracker</h1>
+            <div class="week-selector">
+                <button id="prevWeek">&lt;</button>
+                <span id="currentWeekDisplay">Week 1</span>
+                <button id="nextWeek">&gt;</button>
+            </div>
+        </header>
+
+        <main id="vegetableContainer"></main>
+
+        <footer class="controls">
+            <button id="saveBtn" class="btn-primary">Save Progress</button>
+            <button id="resetWeekBtn" class="btn-secondary">Reset Week</button>
+            <span id="statusMsg"></span>
+        </footer>
+    </div>
+
+    <script>
+        // Data
+        const vegetableData = [
+            { category: "Leafy Greens", vegetables: ["Spinach", "Kale", "Lettuce", "Collard Greens", "Arugula", "Swiss Chard", "Bok Choy"] },
+            { category: "Root Vegetables", vegetables: ["Carrots", "Beets", "Radishes", "Turnips", "Potatoes", "Sweet Potatoes"] },
+            { category: "Bulb & Stem Vegetables", vegetables: ["Onions", "Garlic", "Leeks", "Celery", "Fennel", "Asparagus"] },
+            { category: "Flower Vegetables", vegetables: ["Broccoli", "Cauliflower", "Artichoke"] },
+            { category: "Fruit Vegetables", vegetables: ["Tomatoes", "Bell Peppers", "Eggplants", "Cucumbers", "Zucchini"] },
+            { category: "Pod & Legume Vegetables", vegetables: ["Green Beans", "Peas", "Chickpeas", "Lentils"] },
+            { category: "Starchy Vegetables", vegetables: ["Corn", "Winter Squash"] },
+            { category: "Other Cruciferous", vegetables: ["Brussels Sprouts", "Kohlrabi"] }
+        ];
+
+        const totalWeeks = 52;
+        let currentWeek = 1;
+
+        // Load/Save Logic
+        function loadSavedData() {
+            try {
+                return JSON.parse(localStorage.getItem('veggieTracker')) || {};
+            } catch (e) {
+                console.error("Error loading data:", e);
+                return {};
+            }
+        }
+
+        function saveData() {
+            const data = loadSavedData();
+            const selected = document.querySelectorAll('.veg-checkbox:checked');
+            data[`week_${currentWeek}`] = Array.from(selected).map(cb => cb.dataset.veg);
+            localStorage.setItem('veggieTracker', JSON.stringify(data));
+            showStatus('Progress saved!', 'success');
+        }
+
+        function renderVegetables() {
+            const container = document.getElementById('vegetableContainer');
+            const savedData = loadSavedData();
+            const weekKey = `week_${currentWeek}`;
+            const selectedVeggies = savedData[weekKey] || [];
+
+            let html = '';
+            vegetableData.forEach(cat => {
+                html += `<section class="category"><h2>${cat.category}</h2>`;
+                cat.vegetables.forEach(veg => {
+                    const checked = selectedVeggies.includes(veg) ? 'checked' : '';
+                    html += `<label class="veg-label">`;
+                    html += `<input type="checkbox" class="veg-checkbox" data-veg="${veg}" ${checked}>`;
+                    html += `${veg}`;
+                    html += `</label>`;
+                });
+                html += `</section>`;
+            });
+            container.innerHTML = html;
+            document.getElementById('currentWeekDisplay').textContent = `Week ${currentWeek}`;
+        }
+
+        // Event Listeners
+        document.getElementById('prevWeek').addEventListener('click', () => {
+            if (currentWeek > 1) { currentWeek--; renderVegetables(); }
+        });
+
+        document.getElementById('nextWeek').addEventListener('click', () => {
+            if (currentWeek < totalWeeks) { currentWeek++; renderVegetables(); }
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', saveData);
+
+        document.getElementById('resetWeekBtn').addEventListener('click', () => {
+            if (confirm(`Clear all selections for Week ${currentWeek}?`)) {
+                const saved = loadSavedData();
+                delete saved[`week_${currentWeek}`];
+                localStorage.setItem('veggieTracker', JSON.stringify(saved));
+                renderVegetables();
+                showStatus('Week reset.', 'info');
+            }
+        });
+
+        document.addEventListener('change', (e) => {
+            if (e.target.classList.contains('veg-checkbox')) {
+                saveData();
+            }
+        });
+
+        function showStatus(msg, type) {
+            const el = document.getElementById('statusMsg');
+            el.textContent = msg;
+            el.className = `status-${type}`;
+            setTimeout(() => el.textContent = '', 3000);
+        }
+
+        // Initialize
+        renderVegetables();
+    </script>
+</body>
+</html>
