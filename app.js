@@ -37,7 +37,7 @@ function renderVegetables() {
             const checked = selectedVeggies.includes(veg) ? 'checked' : '';
             html += `<label class="veg-label">`;
             html += `<input type="checkbox" class="veg-checkbox" data-veg="${veg}" ${checked}>`;
-            html += `${veg}`;
+            html += `<span class="veg-name-text">${veg}</span>`; // Added span for cleaner styling
             html += `</label>`;
         });
         html += `</section>`;
@@ -54,46 +54,33 @@ function showStatus(msg, type) {
 }
 
 // ===========================================
-// DASHBOARD FUNCTIONS
+// DASHBOARD STATISTICS FUNCTIONS
 // ===========================================
 
 function calculateStats() {
     const data = loadSavedData();
-    
-    // Total weeks with any data
     const weeksWithEntries = Object.keys(data).filter(k => data[k].length > 0).length;
-    
-    // Total vegetable selections across all weeks
     let totalSelections = 0;
     Object.values(data).forEach(v => totalSelections += v.length);
     
-    // Calculate average completion rate
     let completionRates = [];
     Object.keys(data).forEach(key => {
         const count = data[key].length;
         const percent = (count / getTotalVeggieCount()) * 100;
-        if (count > 0) {
-            completionRates.push(percent);
-        }
+        if (count > 0) completionRates.push(percent);
     });
+    
     const avgCompletion = completionRates.length > 0 
         ? Math.round(completionRates.reduce((a,b) => a + b, 0) / completionRates.length)
         : 0;
     
-    return {
-        weeksTracked: weeksWithEntries,
-        totalSelections,
-        avgCompletion
-    };
+    return { weeksTracked: weeksWithEntries, totalSelections, avgCompletion };
 }
 
 function getCategoryCounts() {
     const data = loadSavedData();
     const categoryCounts = {};
-    
-    vegetableData.forEach(cat => {
-        categoryCounts[cat.category] = 0;
-    });
+    vegetableData.forEach(cat => { categoryCounts[cat.category] = 0; });
     
     Object.values(data).forEach(vegList => {
         vegList.forEach(vegName => {
@@ -105,7 +92,6 @@ function getCategoryCounts() {
             }
         });
     });
-    
     return categoryCounts;
 }
 
@@ -124,6 +110,40 @@ function getTopVegetables(limit = 5) {
         .slice(0, limit);
 }
 
+// NEW: Get Least Consumed Vegetables
+function getLeastConsumedVegetables(limit = 5) {
+    const data = loadSavedData();
+    const allVeggies = {};
+    const trackedVeggies = {};
+    
+    // Initialize all known vegetables with 0 count
+    vegetableData.forEach(cat => {
+        cat.vegetables.forEach(veg => {
+            allVeggies[veg] = 0;
+        });
+    });
+    
+    // Count actual consumption
+    Object.values(data).forEach(vegList => {
+        vegList.forEach(vegName => {
+            if (allVeggies.hasOwnProperty(vegName)) {
+                trackedVeggies[vegName] = (trackedVeggies[vegName] || 0) + 1;
+            }
+        });
+    });
+    
+    // Combine: if not in tracked, it's 0. If it is, use the count.
+    const finalCounts = {};
+    for (let veg in allVeggies) {
+        finalCounts[veg] = trackedVeggies[veg] || 0;
+    }
+
+    // Sort by count (ascending) and pick the lowest
+    return Object.entries(finalCounts)
+        .sort((a, b) => a[1] - b[1])
+        .slice(0, limit);
+}
+
 function getTotalVeggieCount() {
     return vegetableData.reduce((sum, cat) => sum + cat.vegetables.length, 0);
 }
@@ -136,11 +156,17 @@ function getCurrentWeekProgress() {
     return { selected, total, percent: Math.round((selected / total) * 100) };
 }
 
+// ===========================================
+// RENDER DASHBOARD
+// ===========================================
+
 function renderDashboard() {
     const stats = calculateStats();
     const progress = getCurrentWeekProgress();
     const categoryCounts = getCategoryCounts();
     const topVeggies = getTopVegetables(5);
+    const leastVeggies = getLeastConsumedVegetables(5);
+    
     const maxCategory = Math.max(...Object.values(categoryCounts), 1);
     
     // Update stat cards
@@ -171,7 +197,7 @@ function renderDashboard() {
         });
     document.getElementById('categoryBars').innerHTML = categoryHtml;
     
-    // Render top vegetables
+    // Render Top 5 Most Consumed
     if (topVeggies.length > 0) {
         let topHtml = '<ul class="top-list">';
         topVeggies.forEach(([name, count], index) => {
@@ -186,8 +212,29 @@ function renderDashboard() {
         topHtml += '</ul>';
         document.getElementById('topVegetables').innerHTML = topHtml;
     } else {
-        document.getElementById('topVegetables').innerHTML = 
-            '<p style="text-align:center;color:#888;">No data yet - start tracking!</p>';
+        document.getElementById('topVegetables').innerHTML = '<p style="text-align:center;color:#888;">No data yet.</p>';
+    }
+
+    // NEW: Render Least Consumed
+    if (leastVeggies.length > 0) {
+        let leastHtml = '<ul class="top-list">';
+        leastVeggies.forEach(([name, count], index) => {
+            // Color coding: 0 times = red warning, low times = yellow caution
+            const colorClass = count === 0 ? 'text-danger' : 'text-warning';
+            const icon = count === 0 ? '⚠️' : '📉';
+            
+            leastHtml += `
+                <li class="top-item">
+                    <span class="rank-number" style="background: linear-gradient(135deg, #ef476f 0%, #ff9f1c 100%);">${index + 1}</span>
+                    <span class="veg-name">${icon} ${name}</span>
+                    <span class="veg-count" style="color: ${count === 0 ? '#ef476f' : '#ff9f1c'}">${count === 0 ? 'Never' : count + '×'}</span>
+                </li>
+            `;
+        });
+        leastHtml += '</ul>';
+        document.getElementById('leastVegetables').innerHTML = leastHtml;
+    } else {
+        document.getElementById('leastVegetables').innerHTML = '<p style="text-align:center;color:#888;">Great job! You\'ve eaten everything.</p>';
     }
 }
 
@@ -207,7 +254,6 @@ function toggleDashboard() {
         dashboard.classList.add('hidden');
         btn.textContent = '📊 View Dashboard';
         document.getElementById('vegetableContainer').classList.remove('hidden');
-        document.querySelector('.controls').classList.remove('hidden');
     }
 }
 
@@ -223,7 +269,6 @@ function exportToCSV() {
     }
 
     let csvContent = "Week,Category,Vegetable Name\n";
-    
     Object.keys(data).forEach(key => {
         const weekNum = key.replace("week_", "");
         data[key].forEach(vegName => {
@@ -304,13 +349,10 @@ function importFromCSV(event) {
 document.getElementById('prevWeek').addEventListener('click', () => {
     if (currentWeek > 1) { currentWeek--; renderVegetables(); }
 });
-
 document.getElementById('nextWeek').addEventListener('click', () => {
     if (currentWeek < totalWeeks) { currentWeek++; renderVegetables(); }
 });
-
 document.getElementById('saveBtn').addEventListener('click', saveData);
-
 document.getElementById('resetWeekBtn').addEventListener('click', () => {
     if (confirm(`Clear all selections for Week ${currentWeek}?`)) {
         const saved = loadSavedData();
@@ -320,7 +362,6 @@ document.getElementById('resetWeekBtn').addEventListener('click', () => {
         showStatus('Week reset.', 'info');
     }
 });
-
 document.getElementById('exportBtn').addEventListener('click', exportToCSV);
 document.getElementById('fileInput').addEventListener('change', importFromCSV);
 document.getElementById('viewDashboardBtn').addEventListener('click', toggleDashboard);
