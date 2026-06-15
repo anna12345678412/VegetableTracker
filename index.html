@@ -22,12 +22,23 @@
         </main>
 
         <footer class="controls">
-            <button id="saveBtn" class="btn-primary">Save Progress</button>
-            <button id="resetWeekBtn" class="btn-secondary">Reset Week</button>
-            <span id="statusMsg"></span>
+            <div class="btn-group">
+                <button id="saveBtn" class="btn-primary">Save Week</button>
+                <button id="resetWeekBtn" class="btn-secondary">Reset Week</button>
+            </div>
+            
+            <button id="exportBtn" class="btn-export">📥 Export All Data to CSV</button>
+            
+            <label for="fileInput" class="btn-import-label">
+                📂 Import Data from CSV
+            </label>
+            <input type="file" id="fileInput" accept=".csv">
+
+            <div id="statusMsg" class="status-msg"></div>
         </footer>
     </div>
 
+    <!-- External Scripts -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
